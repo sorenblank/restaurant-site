@@ -61,3 +61,59 @@ window.addEventListener("scroll", function () {
     header.classList.remove("active");
   }
 });
+
+
+// HERO SLIDER
+
+const heroSlider = document.querySelector("[data-hero-slider]");
+const heroSliderItems = document.querySelectorAll("[data-hero-slider-item]");
+const heroSliderPrevBtn = document.querySelector("[data-prev-btn]");
+const heroSliderNextBtn = document.querySelector("[data-next-btn]");
+
+let currentSliderPos = 0;
+let lastActiveSliderItem = heroSliderItems[0];
+
+const updateSliderPos = function(){
+  lastActiveSliderItem.classList.remove("active");
+  heroSliderItems[currentSliderPos].classList.add("active");
+  lastActiveSliderItem = heroSliderItems[currentSliderPos];
+};
+
+const slideNext = function(){
+  if (currentSliderPos === heroSliderItems.length - 1){
+    currentSliderPos = 0;
+  } else {
+    currentSliderPos++;
+  }
+  updateSliderPos();
+};
+
+
+const slidePrev = function(){
+  if (currentSliderPos === 0){
+    currentSliderPos = heroSliderItems.length - 1;
+  } else {
+    currentSliderPos--;
+  }
+  updateSliderPos();
+}
+
+heroSliderNextBtn.addEventListener("click", slideNext);
+heroSliderPrevBtn.addEventListener("click", slidePrev);
+
+
+// HERO SLIDER AUTOPLAY
+
+let autoSlideInterval;
+
+const autoSlide = function(){
+  autoSlideInterval = setInterval(slideNext, 7000);
+};
+
+addEventOnElements([heroSliderNextBtn, heroSliderPrevBtn], "mouseover", () => {
+  clearInterval(autoSlideInterval);
+});
+
+addEventOnElements([heroSliderNextBtn, heroSliderPrevBtn], "mouseout", autoSlide);
+
+window.addEventListener("load", autoSlide);
