@@ -27,6 +27,7 @@ const navbar = document.querySelector("[data-navbar]");
 const navTogglers = document.querySelectorAll("[data-nav-toggler]");
 const overlay = document.querySelector("[data-overlay]");
 
+
 const toggleNavbar = function(){
     navbar.classList.toggle("active");
     overlay.classList.toggle("active");
@@ -36,9 +37,10 @@ const toggleNavbar = function(){
 addEventOnElements(navTogglers, "click", toggleNavbar);
 
 
-// HEADER HIDE
+// HEADER HIDE AND BACK TO TOP BUTTON
 
 const header = document.querySelector("[data-header]");
+const backToTopBtn = document.querySelector("[data-back-top-btn]");
 
 let lastScrollPos = 0;
 
@@ -46,8 +48,10 @@ const hideHeader = function () {
   const isScrollBottom = lastScrollPos < window.scrollY;
   if (isScrollBottom) {
     header.classList.add("hide");
+    backToTopBtn.classList.add("active");
   } else {
     header.classList.remove("hide");
+    backToTopBtn.classList.remove("active");
   }
 
   lastScrollPos = window.scrollY;
