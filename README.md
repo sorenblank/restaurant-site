@@ -1,5 +1,7 @@
 # Restaurant Site
-This is a restaurant site made using purely HTML, CSS and JS. 
+This is a restaurant site "Grilli" made using purely HTML, CSS and JS.
+
+![Embed](https://github.com/sorenblank/restaurant-site/blob/main/public/misc/embed.png?raw=true)
 
 ## Contributing
 Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributiors who wants to make this website better can make contribution,which will be **greatly appreciated**.
