@@ -117,3 +117,26 @@ addEventOnElements([heroSliderNextBtn, heroSliderPrevBtn], "mouseover", () => {
 addEventOnElements([heroSliderNextBtn, heroSliderPrevBtn], "mouseout", autoSlide);
 
 window.addEventListener("load", autoSlide);
+
+
+// PARALLAX EFFECT
+
+const parallaxItems = document.querySelectorAll("[data-parallax-item]");
+
+let x, y;
+
+window.addEventListener("mousemove", function(e){
+  x = (e.clientX/ window.innerWidth * 10) - 5;
+  y = (e.clientY/ window.innerHeight * 10) - 5;
+
+
+  x = x - (x*2);
+  y = y - (y*2);
+
+  for (let i=0, len = parallaxItems.length; i < len; i++){
+    x = x * Number(parallaxItems[i].dataset.parallaxSpeed);
+    y = y * Number(parallaxItems[i].dataset.parallaxSpeed);
+    parallaxItems[i].style.transform = `translate3d(${x}px, ${y}px, 0)`;
+  }
+});
+
