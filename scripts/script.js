@@ -39,6 +39,15 @@ const toggleNavbar = function(){
 
 addEventOnElements(navTogglers, "click", toggleNavbar);
 
+// Added by github.com/hh-abir
+const navbarLinks = document.querySelectorAll(".navbar-item a");
+for (const link of navbarLinks) {
+  link.addEventListener("click", function(event) {
+    navbar.classList.remove("active");
+    overlay.classList.remove("active");
+    document.body.classList.remove("navbar-active");
+  });
+}
 
 
 // HEADER HIDE AND BACK TO TOP BUTTON
@@ -66,8 +75,10 @@ const hideHeader = function () {
 document.body.addEventListener("touchmove", function (e) {
   if (document.body.classList.contains("navbar-active")) {
     e.preventDefault();
+    
   }
 });
+
 
 window.addEventListener("scroll", function () {
   if (window.scrollY >= 50) {
