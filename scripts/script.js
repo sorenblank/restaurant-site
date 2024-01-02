@@ -31,22 +31,36 @@ const overlay = document.querySelector("[data-overlay]");
 const toggleNavbar = function(){
     navbar.classList.toggle("active");
     overlay.classList.toggle("active");
-    document.body.classList.toggle("active");
+    document.body.classList.toggle("active");  
+    
+    // Added by github.com/hh-abir
+    document.body.classList.toggle("navbar-active");
 }
 
 addEventOnElements(navTogglers, "click", toggleNavbar);
 
+// Added by github.com/hh-abir
+const navbarLinks = document.querySelectorAll(".navbar-item a");
+for (const link of navbarLinks) {
+  link.addEventListener("click", function(event) {
+    navbar.classList.remove("active");
+    overlay.classList.remove("active");
+    document.body.classList.remove("navbar-active");
+  });
+}
+
 
 // HEADER HIDE AND BACK TO TOP BUTTON
-
 const header = document.querySelector("[data-header]");
 const backToTopBtn = document.querySelector("[data-back-top-btn]");
 
 let lastScrollPos = 0;
 
+
 const hideHeader = function () {
   const isScrollBottom = lastScrollPos < window.scrollY;
-  if (isScrollBottom) {
+  // Updated by github.com/hh-abir
+  if (isScrollBottom && !navbar.classList.contains("active")) {
     header.classList.add("hide");
     backToTopBtn.classList.add("active");
   } else {
@@ -55,7 +69,16 @@ const hideHeader = function () {
   }
 
   lastScrollPos = window.scrollY;
-}
+};
+
+// Added by github.com/hh-abir
+document.body.addEventListener("touchmove", function (e) {
+  if (document.body.classList.contains("navbar-active")) {
+    e.preventDefault();
+    
+  }
+});
+
 
 window.addEventListener("scroll", function () {
   if (window.scrollY >= 50) {
@@ -143,4 +166,6 @@ window.addEventListener("mousemove", function(e){
     parallaxItems[i].style.transform = `translate3d(${x}px, ${y}px, 0)`;
   }
 });
+
+
 

@@ -2081,3 +2081,9 @@ textarea.input-field{
     .features .grid-list { grid-template-columns: repeat(4, 1fr); }
   
   }
+
+  /* Added by github.com/hh-abir */
+  body.navbar-active {
+    overflow: hidden;
+  }
+  
